@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        .text-light {
+            color: #999 !important;
+        }
+
+        .aui-radio {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="aui-content" id='addressSection'>
+        <div v-for='addr in addrs' class="aui-card-list">
+            <div class="aui-card-list-header aui-font-size-14">
+                <span class="mName">{{addr.name}}</span>
+                <span class="mPhone">{{addr.phone}}</span>
+            </div>
+            <div class="aui-card-list-content-padded aui-padded-t-0 text-light">
+                <span class="mAddress">{{addr.address}}</span>
+            </div>
+            <div class="aui-card-list-footer aui-border-t">
+
+                <div>
+
+                    <i class="aui-iconfont aui-icon-trash aui-margin-r-5 aui-margin-l-15 aui-font-size-14"></i>删除
+                </div>
+            </div>
+        </div>
+        <div class="aui-content" id="content">
+        </div>
+    </section>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.parseTapmode();
+        window.app = new Vue({
+            el: '#addressSection',
+            data: {
+                addrs: []
+            }
+        })
+        api.ajax({
+            url: 'http://101.200.54.63:8080/AddressServlet/findAll',
+            method: 'post',
+            data: {
+                values: {
+                    openId: $api.getStorage('user').openId
+                }
+            }
+        }, function (ret, err) {
+            if (ret) {
+                window.app.addrs = ret.addresses
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    };
+</script>
+
+</html>

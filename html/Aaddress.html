@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        body {}
+    </style>
+</head>
+
+<body>
+    <div class="headerPos">
+        <input type="text" id="name" placeholder="请输入姓名">
+        <input type="text" id="tel" placeholder="电话">
+        <input type="text" id="address" value="详细地址">
+        <br>
+        <button type="button" name="add" onclick="addaddress()">添加</button>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+
+    };
+    function addaddress() {
+        api.ajax({
+            url: 'http://101.200.54.63:8080/AddressServlet/addAddress',
+            method: 'post',
+            data: {
+                values: {
+                    openId: $api.getStorage('user').openId,
+                    name: $api.byId('name').value,
+                    phone: $api.byId('tel').value,
+                    address: $api.byId('address').value
+
+                },
+
+            }
+        }, function (ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    }
+</script>
+
+</html>

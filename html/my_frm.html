@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/profile.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: #f0f0f0;
+        }
+
+        .h10 {
+            height: 10px;
+            background: #f4f5f6;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .h1 {
+            height: 1px;
+            margin-left: 15px;
+            background: #f0f0f0;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .firstblock,
+        .secondblock,
+        .thirdblock {
+            background-color: #fff;
+        }
+
+        .login {
+            position: relative;
+        }
+
+        .login .text {
+            width: 100px;
+            height: 28px;
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            margin-left: -50px;
+            background-image: url(../image/my/lg.png);
+            background-repeat: no-repeat;
+            background-size: 100px 24px;
+            background-position: center center;
+        }
+
+        /*设置登录后的头像样式*/
+
+        #user {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        /*
+        #user .qqLogin {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            margin-top: -90px;
+        }*/
+
+        #user .userIcon {
+            height: 150px;
+            width: 150px;
+            margin: 0 auto;
+        }
+
+        #user .userIcon img {
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        #user .userName {
+            height: 30px;
+            width: 100%;
+            margin-top: 5px;
+            line-height: 30px;
+            font-size: 25px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .loginbg {
+            width: 100%;
+        }
+
+        .logins {
+            width: 100%;
+            height: 35%;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-sizing: border-box;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .login_pic {
+            height: 100%;
+            width: 25%;
+            float: left;
+            background-size: 80%;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        #img {
+            display: none;
+            /*background-color: #000;*/
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -40px;
+            margin-left: -40px;
+        }
+
+        #username {
+            display: none;
+            width: 100px;
+            height: 28px;
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            margin-left: -50px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .logins .tel {
+            background-image: url(../image/my/tel.png);
+        }
+
+        .logins .wx {
+            background-image: url(../image/my/wx.png);
+        }
+
+        .logins .qq {
+            background-image: url(../image/my/qq.png);
+        }
+
+        .logins .wb {
+            background-image: url(../image/my/wb.png);
+        }
+
+        .logins .head {
+            background-image: url(../image/my/wb.png);
+        }
+
+        .my_content {
+            height: 64px;
+            display: flex;
+            display: -webkit-flex;
+            display: -webkit-box;
+            flex-flow: row;
+            -webkit-flex-flow: row;
+            -webkit-box-orient: horizontal;
+            background-color: #fff;
+        }
+
+        .cont {
+            flex: 1;
+            -webkit-flex: 1;
+            -webkit-box-flex: 1;
+            height: 64px;
+            box-sizing: border-box;
+            padding-bottom: 10px;
+            padding-top: 42px;
+            color: #505050;
+            font-size: 10px;
+            text-align: center;
+            background-position: center 9px;
+            background-repeat: no-repeat;
+        }
+
+        .my_content .collect {
+            border-right: 1px solid #e8e8e8;
+            background-size: 23px 22px;
+            background-image: url(../image/my/collect.png);
+        }
+
+        .my_content .night {
+            border-right: 1px solid #e8e8e8;
+            background-size: 22px 22px;
+            background-image: url(../image/my/night.png);
+        }
+
+        .my_content .set {
+            background-size: 23px 23px;
+            background-image: url(../image/my/set.png);
+        }
+
+        .person_arrow {
+            position: absolute;
+            height: 20px;
+            right: 10px;
+            top: 90px;
+        }
+
+        .item {
+            height: 50px;
+            line-height: 50px;
+            padding-left: 15px;
+            background-color: #fff;
+        }
+
+        .item_arrow {
+            float: right;
+            width: 6px;
+            padding: 17px 15px 15px 0;
+        }
+
+        .item-hov {
+            background-color: #E8E8E8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrap">
+        <div id="main">
+            <div class="profile_box">
+                <div class="login">
+                    <img src="../image/my/my_bg.png" class="loginbg">
+                    <div id="user">
+                        <div class="logins" id="logins">
+                            <div class="login_pic tel open-win" win="login_mobile"></div>
+                            <div class="login_pic wx" tapmode onclick="fnWXLogin()"></div>
+                            <div class="login_pic qq" tapmode onclick="fnQQLogin()"></div>
+                            <div class="login_pic wb" tapmode onclick="fnQQLogin()"></div>
+                        </div>
+                        <div class="text open-win" win="login_choose" id="login_choose"></div>
+                    </div>
+                    <!-- <div class="logined"> -->
+                    <img src="" alt="" id="img">
+                    <div class="username" id="username"></div>
+                    <!-- </div> -->
+
+                </div>
+                <div class="tabBar">
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenpayWin()">
+                        <span class="num_top">0</span>
+                        <span class="text">待付款</span>
+                    </div>
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenFabuWin()">
+                        <span class="num_top"></span>
+                        <span class="text"></span>
+                    </div>
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpencart()">
+                        <span class="num_top">0</span>
+                        <span class="text">待发货</span>
+                    </div>
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenFabuWin()">
+                        <span class="num_top"></span>
+                        <span class="text"></span>
+                    </div>
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpen()">
+                        <span class="num_top">0</span>
+                        <span class="text">待收货</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="profile_detail_box clearfix">
+                <div class="profile_detail_inner pull-left">
+
+                </div>
+            </div>
+            <div class="profile_detail_container">
+                <div class="profile_detail_box clearfix">
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnOpenallcartframe()">
+                            <img src="../image/profile_item1.png" alt="">
+                            <span class="title">全部订单</span>
+                            <span class="brief">查看所有</span>
+                        </div>
+                    </div>
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnOpenaddressframe()">
+                            <img src="../image/profile_item3.png" alt="">
+                            <span class="title">收货地址</span>
+                            <span class="brief">地址管理</span>
+                        </div>
+                    </div>
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnQQLogout()">
+                            <img src="../image/profile_item8.png" alt="">
+                            <span class="title">退出账号</span>
+                            <span class="brief">期待下次登录</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/zepto.js"></script>
+<script type="text/javascript">
+    //判断是否登录
+    function fnOpenFabuWin() {
+        //判断是否登录：
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'fabu_win',
+                url: 'html/fabu_win.html'
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    //待付款判断是否登陆
+    function fnOpenpayWin() {
+        //判断是否登录：
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'cart_win',
+                url: 'html/cart_win.html'
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    function fnQQLogin() {
+        qq.login(function (ret, err) {
+            var openId = ret.openId;
+            if (ret.status) {
+                qq.getUserInfo(function (ret, err) {
+                    if (ret.status) {
+                        //获得昵称和头像地址
+                        nickname = ret.info.nickname;
+                        head = ret.info.figureurl_qq_2;
+                        //显示头像和昵称
+                        $('#img').attr('src', head).css('display', 'block');
+                        $('#username').html(nickname).css('display', 'block');
+                        //隐藏其他登录方式：
+                        $('#user').css('display', 'none');
+                        //存储昵称和头像地址：
+                        $api.setStorage('user', { 'nickname': nickname, 'head': head, 'openId': openId });
+
+                        //注册：
+                        var host = $api.getStorage('host');
+
+                        api.ajax({
+                            url: 'http://101.200.54.63:8080/UserServlet/login',
+                            method: 'post',
+                            data: {
+
+                                values: {
+                                    openId: openId,
+                                    nickname: nickname,
+                                    head: head
+                                }
+                            }
+                        }, function (ret, err) {
+                            if (ret) {
+                                alert(ret.status)
+                            } else {
+                                alert(JSON.stringify(err));
+                            }
+                        });
+                    } else {
+                        api.alert({
+                            msg: err.msg
+                        });
+                    }
+                });
+            }
+        });
+    }
+    function fnQQLogout() {
+        qq.logout(function (ret, err) {
+            if (ret.status) {
+                api.toast({
+                    msg: '退出成功'
+                });
+                $('#img').css('display', 'none');
+                $('#username').css('display', 'none');
+                //隐藏其他登录方式：
+                $('#user').css('display', 'block');
+                $api.rmStorage('user');
+            } else {
+                api.alert({
+                    msg: err.msg
+                });
+            }
+        });
+    }
+    apiready = function () {
+        qq = api.require('qq');
+        var user = $api.getStorage('user');
+        if (user) {
+            $('#img').attr('src', user.head).css('display', 'block');
+            $('#username').html(user.nickname).css('display', 'block');
+            //隐藏其他登录方式：
+            $('#user').css('display', 'none');
+        }
+        Zepto(function ($) {
+            var em = parseInt(getComputedStyle(document.body, false).fontSize);
+            var emW = em * 3 / 4;
+            var bodyW = $api.offset(document.body).w;
+            var sp1_3 = (bodyW - 4 * emW) / 3;
+            $('.profile_detail_inner').width(sp1_3);
+        });
+    }
+    //打开收货地址
+    function fnOpenaddressframe(news_id) {
+        api.openWin({
+            name: 'address_win',
+            url: 'address_win.html',
+            pageParam: {
+                'news_id': news_id
+            }
+        });
+    }
+    //打开全部订单
+    function fnOpenallcartframe(news_id) {
+        api.openWin({
+            name: 'allcart_win',
+            url: 'allcart_win.html',
+            pageParam: {
+                'news_id': news_id
+            }
+        });
+    }
+
+</script>
+
+</html>
