@@ -22,7 +22,7 @@
 
 <body>
     <section class="aui-content" id='addressSection'>
-        <div v-for='addr in addrs' class="aui-card-list">
+        <div v-for='(addr,cindex) in addrs' class="aui-card-list">
             <div class="aui-card-list-header aui-font-size-14">
                 <span class="mName">{{addr.name}}</span>
                 <span class="mPhone">{{addr.phone}}</span>
@@ -30,10 +30,8 @@
             <div class="aui-card-list-content-padded aui-padded-t-0 text-light">
                 <span class="mAddress">{{addr.address}}</span>
             </div>
-            <div class="aui-card-list-footer aui-border-t">
-
+            <div class="aui-card-list-footer aui-border-t" v-on:click="removeAddr(cindex)">
                 <div>
-
                     <i class="aui-iconfont aui-icon-trash aui-margin-r-5 aui-margin-l-15 aui-font-size-14"></i>删除
                 </div>
             </div>
@@ -46,30 +44,66 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/vue.min.js"></script>
 <script type="text/javascript">
-    apiready = function () {
-        api.parseTapmode();
-        window.app = new Vue({
-            el: '#addressSection',
-            data: {
-                addrs: []
-            }
-        })
+    function updateAddrList() {
         api.ajax({
-            url: 'http://101.200.54.63:8080/AddressServlet/findAll',
+            url: window.host + '/AddressServlet/findAll',
             method: 'post',
             data: {
                 values: {
-                    openId: $api.getStorage('user').openId
+                    openId: window.openId
                 }
             }
         }, function (ret, err) {
-            if (ret) {
+            if (ret && ret.status != 'ERR') {
                 window.app.addrs = ret.addresses
-                alert(JSON.stringify(ret));
             } else {
-                alert(JSON.stringify(err));
+                if (ret) {
+                    alert(ret.statusInfo)
+                } else {
+                    alert(err.msg)
+                }
             }
         });
+    }
+    apiready = function () {
+        api.parseTapmode();
+        api.addEventListener({name:'viewappear'}, function (ret, err) {
+          updateAddrList()
+        })
+        window.openId = $api.getStorage('user').openId
+        window.host = $api.getStorage('host')
+        if (window.host || window.host == '') {
+            window.host = 'http://101.200.54.63:8080'
+        }
+        window.app = new Vue({
+            el: '#addressSection',
+            data: {
+                addrs: [],
+                removeAddr: function (cindex) {
+                    api.ajax({
+                        url: window.host + '/AddressServlet/remove',
+                        method: 'post',
+                        data: {
+                            values: {
+                                openId: window.openId,
+                                index: cindex
+                            }
+                        }
+                    }, function (ret, err) {
+                        if (ret && ret.status != 'ERR') {
+                            updateAddrList()
+                        } else {
+                            if (ret) {
+                                alert(ret.statusInfo)
+                            } else {
+                                alert(err.msg)
+                            }
+                        }
+                    });
+                }
+            }
+        })
+        updateAddrList()
 
     };
 </script>

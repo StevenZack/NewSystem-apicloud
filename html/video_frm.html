@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
-    />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,aItemress=no">
     <title>AUI快速完成布局</title>
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
@@ -31,38 +30,38 @@
 <script type="text/javascript" src="../script/template-native.js"></script>
 <script type="text/javascript">
 
-    var video_ids = [];
-    var titles = [];
-    var videos = [];
+var video_ids=[];
+var titles=[];
+var videos=[];
 
-    var index;
-    function fnPlayVideo(video_id) {
-        for (i in video_ids) {
-            if (video_id == video_ids[i]) {
-                index = i;
-            }
+var index;
+function fnPlayVideo(video_id){
+    for(i in video_ids){
+        if(video_id==video_ids[i]){
+            index = i;
         }
-
-        //调用视频模块播放视频：
-        videoPlayer.play({
-            texts: {
-                head: {
-                    title: titles[index]
-                }
-            },
-            path: host + videos[index], //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
-            //在 android 平台上不支持 widget://
-            autoPlay: true //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
-        }, function (ret, err) {
-            if (ret) {
-                alert(JSON.stringify(ret));
-            } else {
-                alert(JSON.stringify(err));
-            }
-        });
-
     }
-    apiready = function () {
+
+    //调用视频模块播放视频：
+    videoPlayer.play({
+        texts: {
+            head: {
+                title: titles[index]
+            }
+        },
+        path: host+videos[index], //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+        //在 android 平台上不支持 widget://
+        autoPlay: true //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+
+}
+    apiready = function() {
         videoPlayer = api.require('videoPlayer');
         host = $api.getStorage('host');
 
@@ -70,7 +69,7 @@
         api.ajax({
             url: host + 'VideoServlet/findAll',
             method: 'get'
-        }, function (ret, err) {
+        }, function(ret, err) {
             if (ret) {
                 var data = {
                     'ret': ret,
@@ -79,12 +78,12 @@
                 html = template('template', data);
                 $api.dom('body').innerHTML = html;
 
-                //遍历数据:
-                for (i in ret) {
-                    video_ids.push(ret[i].video_id);
-                    titles.push(ret[i].title);
-                    videos.push(ret[i].path);
-                }
+          //遍历数据:
+          for (i in ret){
+              video_ids.push(ret[i].video_id);
+              titles.push(ret[i].title);
+              videos.push(ret[i].path);
+          }
 
             } else {
                 alert(JSON.stringify(err));

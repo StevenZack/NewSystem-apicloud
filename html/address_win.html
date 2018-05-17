@@ -54,24 +54,27 @@
     }
 
     function Fnopenaddaddress() {
-        api.openFrame({
+        //   api.openFrame({
+        //       name: 'Aaddress',
+        //       url: 'Aaddress.html',
+        //       rect: {
+        //           x: 0,
+        //           y: window.headerPos.h,
+        //           w: 'auto',
+        //           h: api.winHeight-window.headerPos.h-footerH
+        //       },
+        //       pageParam: {
+        //           name: 'test'
+        //       },
+        //       bounces: true,
+        //       bgColor: 'rgba(0,0,0,0)',
+        //       vScrollBarEnabled: true,
+        //       hScrollBarEnabled: true
+        //   });
+        api.openWin({
             name: 'Aaddress',
             url: 'Aaddress.html',
-            rect: {
-                x: 0,
-                y: window.headerPos.h,
-                w: 'auto',
-                h: api.winHeight - window.headerPos.h - footerH
-            },
-            pageParam: {
-                name: 'test'
-            },
-            bounces: true,
-            bgColor: 'rgba(0,0,0,0)',
-            vScrollBarEnabled: true,
-            hScrollBarEnabled: true
         });
-
     }
 
 </script>

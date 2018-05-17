@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
-    />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>headcontent</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
@@ -145,11 +144,10 @@
             width: 100%;
         }
 
-        .content {
-            padding: 10px 10px;
+        .content{
+            padding:10px 10px;
         }
-
-        .content img {
+        .content img{
             width: 100%;
 
         }
@@ -163,27 +161,27 @@
 
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript">
-    apiready = function () {
-        var news_id = api.pageParam.news_id;
-        var host = $api.getStorage('host');
+    apiready = function(){
+       var news_id = api.pageParam.news_id;
+       var host = $api.getStorage('host');
 
-        //通过id查询数据：
-        api.ajax({
-            url: host + 'NewsServlet/findNewByNewsId',
-            method: 'post',
-            data: {
-                values: {
-                    news_id: news_id
-                }
-            }
-        }, function (ret, err) {
-            if (ret) {
-                //  alert( JSON.stringify( ret[0].detail ) );
-                $api.dom('body').innerHTML = ret[0].detail;
-            } else {
-                alert(JSON.stringify(err));
-            }
-        });
+       //通过id查询数据：
+       api.ajax({
+           url: host+'NewsServlet/findNewByNewsId',
+           method: 'post',
+           data: {
+               values: {
+                   news_id: news_id
+               }
+           }
+       },function(ret, err){
+           if (ret) {
+              //  alert( JSON.stringify( ret[0].detail ) );
+               $api.dom('body').innerHTML = ret[0].detail;
+           } else {
+               alert( JSON.stringify( err ) );
+           }
+       });
 
     }
 </script>
