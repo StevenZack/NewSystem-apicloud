@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <style type="text/css">
@@ -89,143 +90,118 @@
     <section class="aui-content-padded aui-clearfix">
         <div class="aui-info">
             <div class="aui-info-item aui-padded-r-10" style="width: 13rem">
-                <div>
-                    <i class="aui-iconfont aui-icon-location"></i>
-                    <span id="location" class="aui-ellipsis">北京市海淀区</span>
-                </div>
             </div>
         </div>
         <div class="aui-btn aui-btn-success aui-btn-block" tapmode onclick="fnCommit()">提交</div>
     </section>
 </body>
-<script type="text/javascript" src="../script/api.js" ></script>
-<script type="text/javascript" src="../script/zepto.min.js" ></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
 <script>
 
-function fnCommit(){
-    var text = $('textarea').val();
-    var images = [];
-    $('img').each(function(){
-      images.push($(this).attr('src'));
-    });
-    //执行提交：
-    var host = $api.getStorage('host');
-    var openId = $api.getStorage('user').openId;
-    api.ajax({
-        url: host+'/CircleServlet/upload',
-        method: 'post',
-        data: {
-            values: {
-                text: text,
-                address:address,
-                openId:openId
-            },
-            files: {
-                file: images
+    function fnCommit() {
+        var text = $('textarea').val();
+        var images = [];
+        $('img').each(function () {
+            images.push($(this).attr('src'));
+        });
+        //执行提交：
+        var host = window.host;
+        var openId = window.openId;
+        api.ajax({
+            url: host + '/MomentServlet/upload',
+            method: 'post',
+            data: {
+                values: {
+                    text: text,
+                    openId: openId
+                },
+                files: {
+                    images: images
+                }
             }
-        }
-    },function(ret, err){
-        if (ret) {
-            // alert( JSON.stringify( ret ) );
-            if(ret.status=1){
-                api.closeWin();
-            }else{
-              api.toast({
-                  msg: '发布失败',
-                  duration: 2000,
-                  location: 'bottom'
-              });
-
-            }
-        } else {
-            alert( JSON.stringify( err ) );
-        }
-    });
-
-}
-  function fnStartCarema(){
-     api.actionSheet({
-         title: '选择',
-         cancelTitle: '这里是取消按钮',
-         buttons: ['拍照','相册']
-     }, function(ret, err){
-         if( ret ){
-              if(ret.buttonIndex==1){
-                //拍照
-                api.getPicture({
-                    sourceType: 'camera',
-                    encodingType: 'jpg',
-                    mediaValue: 'pic',
-                    destinationType: 'url',
-                    quality: 50,
-                    saveToPhotoAlbum: true
-                }, function(ret, err){
-                    if(ret){
-                        //  alert(JSON.stringify(ret));
-                        var html ='<div class="aui-col-xs-4 image-item">'+
-                           '<input type="hidden">'+
-                           '<img src="'+ret.data+'" class="notes-image">'+
-                           '<div class="delete-btn">'+
-                               '<i class="aui-iconfont aui-icon-trash"></i>'+
-                           '</div></div>';
-                        $('.add-photos').before(html);
-                    }else{
-                         alert(JSON.stringify(err));
-                    }
-                });
-
-              }else if(ret.buttonIndex==2){
-                //相册
-                api.getPicture({
-                    sourceType: 'album',
-                    encodingType: 'jpg',
-                    mediaValue: 'pic',
-                    destinationType: 'url',
-                    quality: 50,
-                    saveToPhotoAlbum: true
-                }, function(ret, err){
-                    if(ret){
-                        //  alert(JSON.stringify(ret));
-                        var html ='<div class="aui-col-xs-4 image-item">'+
-                           '<input type="hidden">'+
-                           '<img src="'+ret.data+'" class="notes-image">'+
-                           '<div class="delete-btn">'+
-                               '<i class="aui-iconfont aui-icon-trash"></i>'+
-                           '</div></div>';
-                        $('.add-photos').before(html);
-                    }else{
-                         alert(JSON.stringify(err));
-                    }
-                });
-              }
-         }else{
-              alert( JSON.stringify( err ) );
-         }
-     });
-  }
-
-    apiready = function() {
-        var bMap = api.require('bMap');
-        bMap.getLocation({
-            accuracy: '100m',
-            autoStop: true
-        }, function(ret, err) {
-            if (ret.status) {
-                // alert(JSON.stringify(ret));
-                bMap.getNameFromCoords({
-                    lon:ret.lon,
-                    lat:ret.lat
-                }, function(ret, err) {
-                    if (ret.status) {
-                        // alert(JSON.stringify(ret));
-                        address = ret.poiList[0].address;
-                        $api.dom('#location').innerHTML = address ;
-                    }
-                });
+        }, function (ret, err) {
+            if (ret && ret.status != 'ERR') {
+                alert('发布成功')
             } else {
-                alert(err.code);
+                if (ret) {
+                    alert(JSON.stringify(ret))
+                } else {
+                    alert(JSON.stringify(err))
+                }
+            }
+            api.closeWin()
+        });
+
+    }
+    function fnStartCarema() {
+        api.actionSheet({
+            title: '选择',
+            cancelTitle: '这里是取消按钮',
+            buttons: ['拍照', '相册']
+        }, function (ret, err) {
+            if (ret) {
+                if (ret.buttonIndex == 1) {
+                    //拍照
+                    api.getPicture({
+                        sourceType: 'camera',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        quality: 50,
+                        saveToPhotoAlbum: true
+                    }, function (ret, err) {
+                        if (ret) {
+                            //  alert(JSON.stringify(ret));
+                            var html = '<div class="aui-col-xs-4 image-item">' +
+                                '<input type="hidden">' +
+                                '<img src="' + ret.data + '" class="notes-image">' +
+                                '<div class="delete-btn">' +
+                                '<i class="aui-iconfont aui-icon-trash"></i>' +
+                                '</div></div>';
+                            $('.add-photos').before(html);
+                        } else {
+                            alert(JSON.stringify(err));
+                        }
+                    });
+
+                } else if (ret.buttonIndex == 2) {
+                    //相册
+                    api.getPicture({
+                        sourceType: 'album',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        quality: 50,
+                        saveToPhotoAlbum: true
+                    }, function (ret, err) {
+                        if (ret) {
+                            //  alert(JSON.stringify(ret));
+                            var html = '<div class="aui-col-xs-4 image-item">' +
+                                '<input type="hidden">' +
+                                '<img src="' + ret.data + '" class="notes-image">' +
+                                '<div class="delete-btn">' +
+                                '<i class="aui-iconfont aui-icon-trash"></i>' +
+                                '</div></div>';
+                            $('.add-photos').before(html);
+                        } else {
+                            alert(JSON.stringify(err));
+                        }
+                    });
+                }
+            } else {
+                alert(JSON.stringify(err));
             }
         });
+    }
+    function initData() {
+        window.host = 'http://101.200.54.63:8080'
+        window.openId = $api.getStorage('user').openId
+        window.head = $api.getStorage('user').head
+        window.nickname = $api.getStorage('user').nickname
+    }
+    apiready = function () {
+        initData()
     }
 </script>
 
