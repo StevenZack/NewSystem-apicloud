@@ -8,375 +8,35 @@
     <title>首页</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
-    <style>
-        #main {
-            padding: 0;
-        }
-
-        /*导航栏4个按钮*/
-        .sp1_2,.industry,.clearfix{
-            width: 45%;
-        }
-        #nav_top {
-            padding-top: 130px;
-            margin: 0 0.6em 1em 0.6em;
-        }
-
-        #nav_top .nav_top_list {
-            background-color: #EEEEF0;
-            overflow: hidden;
-        }
-
-        #nav_top .nav_top_li {
-            background-color: #EEEEF0;
-            border-radius: 3px;
-            float: left;
-            width: 25%;
-        }
-
-        #nav_top .nav_top_li:active,
-        #nav_top .nav_top_li.tap-active {
-            background-color: #999999;
-        }
-
-        #nav_top .text {
-            float: left;
-            text-indent: 6px;
-            color: #58616D;
-            font-size: 0.75em;
-            line-height: 2em;
-        }
-
-        #nav_top .nav_top_li .icon {
-            float: left;
-            margin-left: 7px;
-            width: 1.5em;
-            height: 1.5em;
-        }
-
-        #nav_top .score .icon {
-            background: url(../../res/img/index_icon_score.png) center center no-repeat;
-            background-size: 100% 100%;
-        }
-
-        #nav_top .recharge .icon {
-            background: url(../../res/img/index_icon_recharge.png) center center no-repeat;
-            background-size: 100% 100%;
-        }
-
-        #nav_top .lottery .icon {
-            background: url(../../res/img/index_icon_lottery.png) center center no-repeat;
-            background-size: 100% 100%;
-        }
-
-        #nav_top .ju .icon {
-            background: url(../../res/img/index_icon_ju.png) center center no-repeat;
-            background-size: 100% 100%;
-        }
-
-        /*导航栏4个按钮 end*/
-
-        /* home页具体内容 */
-
-        .headlines {
-            width: 100%;
-            padding-top: 1em;
-            background-color: #FFFFFF;
-        }
-
-        .container .title {
-            text-indent: 13px;
-            color: #58616D;
-            width: 100%;
-            display: block;
-        }
-
-        .container .brief {
-            text-indent: 13px;
-            font-size: 0.7em;
-            color: #BDBDBD;
-            width: 100%;
-            margin: 6px 0 3px 0;
-            display: block;
-        }
-
-        .headlines img {
-            width: 100%;
-            display: block;
-        }
-
-        .brand {
-            background-color: #FFF;
-
-        }
-
-        .brand:after {
-            clear: both;
-            content: '';
-            display: block;
-        }
-
-        .brand .brand_left {
-            float: left;
-            width: 46%;
-            padding-top: 1em;
-        }
-
-        .brand .brand_left img {
-            width: 100%;
-            display: block;
-        }
-
-        .brand .brand_right {
-            float: left;
-            width: 54%;
-            padding-top: 1em;
-        }
-
-        .brand .brand_right .title {
-            text-indent: 0;
-            width: 100%;
-            display: block;
-        }
-
-        .brand .brand_right .brief {
-            text-indent: 0;
-            width: 100%;
-            color: #58616D;
-            display: block;
-        }
-
-        .brand .brand_right .img_box {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .brand .brand_right .img_box:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-
-        .brand .brand_right .img_box img {
-            width: 46%;
-            float: left;
-            margin: 2px;
-        }
-
-        .count_down {
-            background-color: #FFF;
-            margin-top: 0.75em;
-            margin-bottom: 0.75em;
-        }
-
-        .count_down:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-
-        .count_down .left {
-            float: left;
-            width: 33%;
-            padding-top: 1em;
-        }
-
-        .count_down .center {
-            float: left;
-            width: 33%;
-        }
-
-        .count_down .center img {
-            width: 100%;
-            display: block;
-        }
-
-        .count_down .right {
-            float: left;
-            width: 33%;
-            padding-top: 1.5em;
-        }
-
-        .count_down .right .title {
-            font-size: 0.7em;
-            color: #58616D;
-            display: block;
-        }
-
-        #counting_box {
-            padding-left: 13px;
-        }
-
-        #counting_box li {
-            float: left;
-            font-size: 0.7em;
-        }
-
-        #counting_box .t {
-            background-color: #333333;
-            border-radius: 2px;
-            color: #FFF;
-            width: 0.75em;
-            height: 1.3em;
-            line-height: 1.4em;
-            text-align: center;
-            margin-right: 1px;
-            text-decoration: line-through;
-        }
-
-        /*会场*/
-
-        .venue {
-            width: 100%;
-            padding-top: 1em;
-            background-color: #FFFFFF;
-        }
-
-        .venue img {
-            width: 100%;
-            display: block;
-        }
-
-        .venue_big_box {
-            width: 100%;
-            padding-bottom: 1em;
-            overflow-x: scroll;
-            overflow-y: hidden;
-        }
-
-        .venue_big_inner {}
-
-        .venue_big {
-            padding-top: 1em;
-            background-color: #FFFFFF;
-        }
-
-        .venue_big.v1 {
-            margin-left: 0;
-        }
-
-        .venue_big img {
-            width: 100%;
-            display: block;
-        }
-
-        /*会场end*/
-
-        /*中间大广告*/
-
-        .big_ads {
-            margin-top: 0.75em;
-            margin-bottom: 0.75em;
-        }
-
-        .big_ads.last {
-            margin-top: 0;
-        }
-
-        /*中间大广告end*/
-
-        /*行业精选*/
-
-        .industry_select {}
-
-        .industry {
-            background-color: #FFF;
-            margin-bottom: 0.75em;
-        }
-
-        .reload_header {
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
-
-        .reload_header .title {
-            float: left;
-            width: auto;
-        }
-
-        .reload_header .reload {
-            float: right;
-            color: #BDBDBD;
-            border-radius: 3px;
-            text-align: center;
-            width: 5em;
-            font-size: 0.8em;
-            height: 1.5em;
-            line-height: 1.4em;
-
-        }
-
-        .reload_header .reload .reload_icon {
-            width: 1em;
-            height: 1em;
-            display: inline-block;
-            background: url(../../res/img/tm_home_refresh_small_normal.png) center center no-repeat;
-            background-size: 100% 100%;
-            vertical-align: baseline;
-        }
-
-        .reload_header .reload:active,
-        .reload_header .reload.tap-active {
-            background-color: #666666;
-        }
-
-        .reload_header .reload:active .reload_icon,
-        .reload_header .reload.tap-active .reload_icon {
-            background: url(../../res/img/tm_home_refresh_small_press.png) center center no-repeat;
-            background-size: 100% 100%;
-        }
-
-        .industry_left {
-            padding-top: 1em;
-            width: 50%;
-            float: left;
-        }
-
-        .industry_right {
-            width: 50%;
-            float: left;
-        }
-
-        .industry_right img {
-            width: 100%;
-            display: block;
-        }
-
-        /*行业精选end*/
-
-        /* 更多惊喜 */
-
-        .more {}
-
-        .more_unit {
-            background-color: #FFF;
-            margin-bottom: 0.75em;
-        }
-
-        .more_unit .img_box {
-            margin: 0.75em auto;
-        }
-
-        .more_unit img {
-            width: 100%;
-            display: block;
-        }
-
-        .more_unit .price {
-            text-indent: 0.75em;
-            color: #FF4450;
-            margin-bottom: 8px;
-        }
-
-        #slider {
-            height: 1000px;
-        }
-
-        /*更多惊喜 end*/
-
-        /* home页具体内容 end */
+    <style type="text/css">
+    #main{
+        width: 100%;padding: 0px;
+    }
+    #secondColum{
+        margin-left: 17px;
+    }
+    .secondColum-item{
+        width: 100px;background-color: #fff;margin-right: 15px;
+    }
+    .secondColum-item img{
+        width: 100%;
+    }
+    .industry_left{
+        background-color: #fff;
+    }
+    .industry_left img{
+        height: 20px;
+    }
+    .more_unit{
+        background-color: #fff;
+    }
+    .more_unit img{
+        width: 70px;
+    }
+    .more_unit .price{
+        color: red;
+    }
     </style>
-    <script type="text/javascript" src="script/jquery.min.js"></script>
     <body>
         <div id="wrap">
             <div id="main">
@@ -386,7 +46,7 @@
                         <!--  <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书" >
                       <img src="../image/index_ad_1.jpg" alt="全球知名大牌特卖汇">
                   </div>-->
-                        <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书">
+                        <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书" onclick="opensearch('面膜')">
                             <img src="../image/index_ad_6.jpg" alt="君御灯饰特惠日！">
                         </div>
                         <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书">
@@ -412,18 +72,18 @@
                         </ul>
                     </div>
                 </div>
-                <div style="margin-top: 150px;display: flex;flex-direction: row;width: 100%;overflow: scroll;align-items: stretch;margin-bottom: 10px;" id="secondColum">
-                        <div class="venue_big sp1_3_big v1" id="idress" tapmode="tap-active" style="margin-bottom:1em;">
+                <div style="margin-top: 150px;display: flex;flex-direction: row;align-items: stretch;margin-bottom: 10px;" id="secondColum">
+                        <div class="secondColum-item" id="idress" tapmode="tap-active" onclick="opensearch('服装')">
                             <span class="title">我的衣橱</span>
                             <span class="brief">国外潮牌任你挑</span>
                             <img src="../image/main_clothes_1.jpg" alt="">
                         </div>
-                        <div class="venue_big sp1_3_big " id="imakeup" tapmode="tap-active" onclick="fnopenMakeup();">
+                        <div class="secondColum-item" id="imakeup" tapmode="tap-active" onclick="opensearch('护肤品')">
                             <span class="title">护肤美妆</span>
                             <span class="brief">全方位美美哒</span>
                             <img src="../image/main_hufu_1.jpg" alt="">
                         </div>
-                        <div class="venue_big sp1_3_big " id="ihealth" tapmode="tap-active" onclick="fnopenMedcine();">
+                        <div class="secondColum-item" id="ihealth" tapmode="tap-active" onclick="opensearch('保健品');">
                             <span class="title">大牌保健品</span>
                             <span class="brief">由内而外的改变</span>
                             <img src="../image/main_baojian_1.jpg" alt="">
@@ -431,7 +91,7 @@
                 </div>
 
                 <div style="display: flex;flex-wrap: wrap;flex-direction: row;">
-                    <div style="width: 100%;" class="sp1 reload_header">
+                    <div style="width: 90%;margin: 0px;padding: 0px;" class="sp1 reload_header">
                         <span class="title">其他精选</span>
                     </div>
                     <!-- 行业精选 -->
@@ -477,8 +137,8 @@
                     </div>
                 </div>
                 <!-- 更多惊喜 -->
-                <div class="more clearfix" style="width: 100%;display: flex;flex-wrap: wrap;">
-                    <div class="sp1 reload_header" style="display: flex;justify-content: space-between;width: 90%;">
+                <div class="more clearfix" style="display: flex;flex-direction: row;flex-wrap: wrap;">
+                    <div class="sp1 reload_header" style="display: flex;justify-content: space-between;width: 90%;padding:0px;margin: 0px;">
                         <span class="title">行业精选</span>
                         <span class="reload" tapmode="tap-active" onclick="changeGroup();">
                             <i class="reload_icon"></i>
