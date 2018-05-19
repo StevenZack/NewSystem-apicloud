@@ -14,7 +14,9 @@
         }
 
         /*导航栏4个按钮*/
-
+        .sp1_2,.industry,.clearfix{
+            width: 45%;
+        }
         #nav_top {
             padding-top: 130px;
             margin: 0 0.6em 1em 0.6em;
@@ -375,16 +377,13 @@
         /* home页具体内容 end */
     </style>
     <script type="text/javascript" src="script/jquery.min.js"></script>
-
-
-
     <body>
         <div id="wrap">
             <div id="main">
                 <!-- 轮播图 -->
                 <div id='slider' class='swipe'>
                     <div class='swipe-wrap'>
-                        <!--  <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书" onclick="toDetail(this);">
+                        <!--  <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书" >
                       <img src="../image/index_ad_1.jpg" alt="全球知名大牌特卖汇">
                   </div>-->
                         <div class="swipe-box" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php" data-title="新书">
@@ -413,67 +412,31 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="brand sp2_3">
-                    <div class="brand_left" tapmode="tap-active" data-url="http://brand.tmall.com/mobilestreet/index.htm" data-title="品牌街" onclick="toDetail(this);">
-                        <span class="title">品牌街</span>
-                        <span class="brief">怀念书写的乐趣</span>
-                        <!--  <img src="../image/index_img_brand.png" alt="">-->
-                    </div>
-                </div>
-
-                <div class="count_down sp1" tapmode="tap-active" data-url="https://chaoshi.m.tmall.com/" data-title="喵一眼" onclick="toDetail(this);">
-                    <div class="left">
-                        <span class="title">喵一眼</span>
-                        <span class="brief">精选商品限时抢购</span>
-                        <ul id="counting_box" class="clearfix">
-                            <li class="h1 t">0</li>
-                            <li class="h2 t">0</li>
-                            <li class="colon">:</li>
-                            <li class="m1 t">2</li>
-                            <li class="m2 t">5</li>
-                            <li class="colon">:</li>
-                            <li class="s1 t">0</li>
-                            <li class="s2 t">0</li>
-                        </ul>
-                    </div>
-                    <div class="center">
-                        <!--  <img src="../image/home_count_down.png" alt=""> -->
-                    </div>
-                    <div class="right">
-                        <span class="title">精品大量涌入</span>
-                        <span class="brief">24小时整点更新</span>
-                    </div>
-                </div>
-                <div class="venue_big_box sp1">
-                    <div class="venue_big_inner clearfix">
-                        <div class="venue_big sp1_3_big v1" tapmode="tap-active" style="margin-bottom:1em;">
+                <div style="margin-top: 150px;display: flex;flex-direction: row;width: 100%;overflow: scroll;align-items: stretch;margin-bottom: 10px;" id="secondColum">
+                        <div class="venue_big sp1_3_big v1" id="idress" tapmode="tap-active" style="margin-bottom:1em;">
                             <span class="title">我的衣橱</span>
                             <span class="brief">国外潮牌任你挑</span>
                             <img src="../image/main_clothes_1.jpg" alt="">
                         </div>
-                        <div class="venue_big sp1_3_big " tapmode="tap-active" onclick="fnopenMakeup();">
+                        <div class="venue_big sp1_3_big " id="imakeup" tapmode="tap-active" onclick="fnopenMakeup();">
                             <span class="title">护肤美妆</span>
                             <span class="brief">全方位美美哒</span>
                             <img src="../image/main_hufu_1.jpg" alt="">
                         </div>
-                        <div class="venue_big sp1_3_big " tapmode="tap-active" onclick="fnopenMedcine();">
+                        <div class="venue_big sp1_3_big " id="ihealth" tapmode="tap-active" onclick="fnopenMedcine();">
                             <span class="title">大牌保健品</span>
                             <span class="brief">由内而外的改变</span>
                             <img src="../image/main_baojian_1.jpg" alt="">
                         </div>
-                    </div>
                 </div>
 
-                <img src="../image/index_img_p4.png" alt="" class="big_ads sp1" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php"
-                    data-title="新书" onclick="toDetail(this);">
-                <div class="industry_select clearfix">
-                    <div class="sp1 reload_header">
+                <div style="display: flex;flex-wrap: wrap;flex-direction: row;">
+                    <div style="width: 100%;" class="sp1 reload_header">
                         <span class="title">其他精选</span>
                     </div>
                     <!-- 行业精选 -->
-                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装" onclick="toDetail(this);">
-                        <div class="industry_left">
+                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装">
+                        <div class="industry_left" id="igirlsdress">
                             <span class="title">女装</span>
                             <span class="brief">潮牌穿搭</span>
                         </div>
@@ -481,7 +444,7 @@
                             <img src="../image/index_img_i1.png" alt="">
                         </div>
                     </div>
-                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装" onclick="toDetail(this);">
+                    <div class="sp1_2 industry clearfix" id="igirlshoes" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装">
                         <div class="industry_left">
                             <span class="title">女鞋</span>
                             <span class="brief">大牌新品抢先购</span>
@@ -491,7 +454,7 @@
                         </div>
                     </div>
 
-                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装" onclick="toDetail(this);">
+                    <div class="sp1_2 industry clearfix" id="ibag" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装">
                         <div class="industry_left">
                             <span class="title">箱包</span>
                             <span class="brief">包你满意</span>
@@ -503,7 +466,7 @@
 
 
 
-                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装" onclick="toDetail(this);">
+                    <div class="sp1_2 industry clearfix" tapmode="tap-active" data-url="http://nvzhuang.tmall.com" data-title="精品女装" id="ibaby">
                         <div class="industry_left">
                             <span class="title">宝宝专区</span>
                             <span class="brief">婴儿用品</span>
@@ -514,8 +477,8 @@
                     </div>
                 </div>
                 <!-- 更多惊喜 -->
-                <div class="more clearfix">
-                    <div class="sp1 reload_header">
+                <div class="more clearfix" style="width: 100%;display: flex;flex-wrap: wrap;">
+                    <div class="sp1 reload_header" style="display: flex;justify-content: space-between;width: 90%;">
                         <span class="title">行业精选</span>
                         <span class="reload" tapmode="tap-active" onclick="changeGroup();">
                             <i class="reload_icon"></i>
@@ -523,7 +486,7 @@
                         </span>
                     </div>
                     <div class="more_unit sp1_2" tapmode="tap-active" data-url="http://detail.m.tmall.com/item.htm?spm=875.7403452.20000008.2.M7uZ74&id=13570491314&abbucket=&acm=03317.1003.1.99094&uuid=jsjqEXAo_mFKjC0zy31sCAXbPnigNyV/z&abtest=&scm=1003.1.03317.ITEM_13570491314_99094&pos=2"
-                        data-title="键盘" onclick="toDetail(this);">
+                        data-title="键盘">
                         <div class="img_box">
                             <img src="../image/index_img_m1.png" alt="">
                         </div>
@@ -537,14 +500,14 @@
                         <span class="price">￥288.0</span>
                     </div>
                     <div class="more_unit sp1_2" tapmode="tap-active" data-url="http://detail.m.tmall.com/item.htm?spm=875.7403452.20000008.13.M7uZ74&id=18826634839&abbucket=&acm=03317.1003.1.99094&uuid=OUtYF9zr_mFKjC0zy31sCAXbPnigNyV/z&abtest=&scm=1003.1.03317.ITEM_18826634839_99094&pos=3"
-                        data-title="哑铃" onclick="toDetail(this);">
+                        data-title="哑铃">
                         <div class="img_box">
                             <img src="../image/index_img_m3.png" alt="">
                         </div>
                         <span class="price">￥95.0</span>
                     </div>
                     <div class="more_unit sp1_2" tapmode="tap-active" data-url="http://detail.m.tmall.com/item.htm?spm=875.7403452.20000008.2.M7uZ74&id=13570491314&abbucket=&acm=03317.1003.1.99094&uuid=jsjqEXAo_mFKjC0zy31sCAXbPnigNyV/z&abtest=&scm=1003.1.03317.ITEM_13570491314_99094&pos=2"
-                        data-title="键盘" onclick="toDetail(this);">
+                        data-title="键盘">
                         <div class="img_box">
                             <img src="../image/index_img_m4.png" alt="">
                         </div>
@@ -553,7 +516,7 @@
                 </div>
                 <!-- 更多惊喜 end -->
                 <img src="../../image/index_img_p8.png" alt="" class="big_ads last sp1" tapmode="tap-active" data-url="http://h5.m.taobao.com/channel/act/other/newbook.php"
-                    data-title="新书" onclick="toDetail(this);">
+                    data-title="新书">
             </div>
             <!-- 下方详情 end -->
             <!--  -->
@@ -568,8 +531,6 @@
         </div>
     </body>
     <script type="text/javascript" src="../script/api.js"></script>
-    <script type="text/javascript" src="../script/zepto.js"></script>
-    <script type="text/javascript" src="../script/common.js"></script>
     <script type="text/javascript" src="../script/swipe.js"></script>
     <script type="text/javascript">
         function searchTypeWin(me) {
@@ -581,107 +542,56 @@
                 }
             })
         }
-        apiready = function () {
-            Zepto(function ($) {
-                // home页 样式 初始化
-                var sp1_3, sp1_2, sp2_3, sp1, sp1_3_big;
-                var em = parseInt(getComputedStyle(document.body, false).fontSize);
-                var emW = em * 3 / 4;
-                var bodyW = $api.offset(document.body).w;
-                sp1_3 = (bodyW - 4 * emW) / 3;
-                sp1_3_big = (bodyW - 4 * emW) / 3 + emW;
-                sp2_3 = bodyW - sp1_3 - 3 * emW;
-                sp1_2 = (bodyW - 3 * emW) / 2;
-                sp1 = bodyW - 2 * emW;
-                $('.sp1_3').width(sp1_3);
-                $('.sp1_3_big').width(sp1_3_big);
-                $('.sp2_3').width(sp2_3);
-                $('.sp1_2').width(sp1_2);
-                $('.sp1').width(sp1);
-                $('.venue_big_inner').width((sp1_3_big * 3 + emW * 2));
-                $('.more_unit .img_box').width(sp1_2 - emW * 2);
-                // home页 样式 初始化 end
-                var aLi = $('#title-box-ul li');
-                // var act_title = $('#title-box-text');
-                window.mySwipe = Swipe($api.byId('slider'), {
-                    auto: 3000,
-                    continuous: true,
-                    callback: function (index, elem) {
-
-                        var i = aLi.length;
-                        while (i--) {
-                            aLi[i].className = '';
-                        }
-                        aLi[index].className = 'active';
-                        // var text = $(elem).find('img').attr('alt');
-                        // act_title.text(text);
-                    }
-                });
-                $('#slider .swipe-box').on('click', function (event) {
-                    api.openWin({
-                        name:'prolist',
-                        url:'prolist.html',
-                        pageParam:{
-                            query:'面膜'
-                        }
-                    })
-                });
-
-                var toDouble = function (num) {
-                    var json;
-                    if (num < 10) {
-                        num = '0' + num;
-                    } else {
-                        num = num + '';
-                    }
-                    json = {
-                        'n1': num.charAt(0),
-                        'n2': num.charAt(1)
-                    };
-
-                    return json;
-                }
-                var h1 = $('#counting_box .h1');
-                var h2 = $('#counting_box .h2');
-                var m1 = $('#counting_box .m1');
-                var m2 = $('#counting_box .m2');
-                var s1 = $('#counting_box .s1');
-                var s2 = $('#counting_box .s2');
-                var countDownTimer;
-                var countDown = function (date) {
-                    var counting = (date.getTime() - (new Date().getTime())) / 1000;
-                    // var hh = parseInt(counting/3600);
-                    // var mm = parseInt((counting-hh*3600)/60);
-                    // var ss = parseInt(counting - hh*3600 - mm*60);
-                    // h1.text(toDouble(parseInt(counting/3600)).n1);
-
-                    countDownTimer = setInterval(function () {
-                        counting -= 1;
-                        if (counting <= 0) {
-                            // 倒计时结束……
-                            clearInterval(countDownTimer);
-                        }
-                        var hh = parseInt(counting / 3600);
-                        var mm = parseInt((counting - hh * 3600) / 60);
-                        var ss = parseInt(counting - hh * 3600 - mm * 60);
-                        // toDouble(counting);
-                        h1.text(toDouble(hh).n1);
-                        h2.text(toDouble(hh).n2);
-                        m1.text(toDouble(mm).n1);
-                        m2.text(toDouble(mm).n2);
-                        s1.text(toDouble(ss).n1);
-                        s2.text(toDouble(ss).n2);
-
-                    }, 1000)
-                };
-                var countDownTime = new Date();
-                countDownTime.setMinutes(countDownTime.getMinutes() + 25);
-                countDown(countDownTime);
-            });
-
+        function setWidth(query, width) {
+            var ds = document.getElementsByClassName(query)
+            for (var i = 0; i < ds.length; i++) {
+                ds[i].width = width
+            }
         }
-  //apiready end
+        function opensearch(query) {
+            api.openWin({
+                name: 'prolist',
+                url: 'prolist.html',
+                pageParam: {
+                    query: query
+                }
+            })
+        }
+        apiready = function () {
+            var sp1_3, sp1_2, sp2_3, sp1, sp1_3_big;
+            var em = parseInt(getComputedStyle(document.body, false).fontSize);
+            var emW = em * 3 / 4;
+            var bodyW = $api.offset(document.body).w;
+            sp1_3 = (bodyW - 4 * emW) / 3;
+            sp1_3_big = (bodyW - 4 * emW) / 3 + emW;
+            sp2_3 = bodyW - sp1_3 - 3 * emW;
+            sp1_2 = (bodyW - 3 * emW) / 2;
+            sp1 = bodyW - 2 * emW;
+            setWidth('.sp1_3', sp1_3)
+            setWidth('.sp1_3_big', sp1_3_big)
+            setWidth('.sp2_3', sp2_3)
+            setWidth('.sp1_2', sp1_2)
+            setWidth('.sp1', sp1)
 
+            setWidth('venue_big_inner', (sp1_3_big * 3 + emW * 2))
+            setWidth('img_box', sp1_2 - emW * 2)
+            // home页 样式 初始化 end
+            var aLi = document.getElementById('title-box-ul').children;
+            // var act_title = $('#title-box-text');
+            window.mySwipe = Swipe($api.byId('slider'), {
+                auto: 3000,
+                continuous: true,
+                callback: function (index, elem) {
+                    var i = aLi.length;
+                    while (i--) {
+                        aLi[i].className = '';
+                    }
+                    aLi[index].className = 'active';
+                    // var text = $(elem).find('img').attr('alt');
+                    // act_title.text(text);
+                }
+            });
+        }
 
     </script>
 
