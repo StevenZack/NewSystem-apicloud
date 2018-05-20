@@ -1,44 +1,61 @@
-<!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-      <title>title</title>
-      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-      <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
-      <style>
-        .aui-bar-nav{
-            background-color: #d13d39;
-        }
-      </style>
-  </head>
-  <body>
-      <header class="aui-bar aui-bar-nav">
-            <div class="aui-pull-left aui-btn">
-                <span class="aui-iconfont aui-icon-left"></span>
-            </div>
-            <div class="aui-title">Title</div>
-      </header>
-  </body>
-  <script type="text/javascript" src="../script/api.js"></script>
-  <script type="text/javascript">
-      apiready = function(){
-         var news_id = api.pageParam.news_id;
-         var header = $api.dom('header');
-          api.openFrame({
-              name:'detail_frm',
-              url: 'detail_frm.html',
-              rect: {
-                  x: 0,
-                  y: header.offsetHeight,
-                  w: api.winWidth,
-                  h: api.winHeight-header.offsetHeight
-              },
-              pageParam: {
-                  'news_id': news_id
-              }
-          });
+<!doctype html>
+<html>
 
-      };
-  </script>
-  </html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+      .grey{
+        color: #aaa;
+      }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">新闻详情</div>
+    </header>
+    <div id="content" style="padding: 10px;display: flex;flex-direction: column;align-items: flex-start;">
+      <div style="color: #000;font-size: 20px;">
+        {{news.title}}
+      </div>
+      <span class="grey">{{news.createTime}}</span>
+      <span class="grey">{{news.publisher_title}}</span>
+      <img :src='news.images[0]' alt="">
+      <div>{{news.content}}</div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript">
+    function initData() {
+        window.host='http://101.200.54.63:8080'
+        window.openId=$api.getStorage('user').openId
+        window.head=$api.getStorage('user').head
+        window.nickname=$api.getStorage('user').nickname
+    }
+    apiready = function () {
+        api.parseTapmode();
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        initData()
+        window.app=new Vue({
+            el:'#content',
+            data:{
+              news:api.pageParam
+            }
+        })
+    };
+    function closeWin() {
+        api.closeWin({
+        });
+    }
+</script>
+
+</html>
