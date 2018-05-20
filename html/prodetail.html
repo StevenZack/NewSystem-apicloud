@@ -9,35 +9,57 @@
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <style>
+    	#content{
+    		display: flex;flex-direction: column;align-items: stretch;
+    	}
+    	.title{
+    		font-size: 20px;color: #000;
+    	}
+    	.price{
+    		color: red;
+    	}
+    	.order{
+    		background-color: #d13d39;color: #fff;display: flex;flex-direction: column;
+    		align-items: center;padding: 5px;
+    	}
+    	.order:active{
+    		background-color: #aaa;
+    	}
     </style>
 </head>
 
 <body>
     <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color: #d13d39;">
         <a class="aui-btn aui-pull-left" tapmode onclick="api.closeWin()">
-            <span class="aui-iconfont aui-icon-left"></span>
+            <span class="aui-iconfont aui-icon-left">商品详情</span>
         </a>
         <div class="aui-title"></div>
     </header>
     <div id="content">
-    	
+    	<img :src="product.images[0]" alt="">
+    	<div class="title">{{product.name}}</div>
+    	<div class="price">¥{{product.price}}</div>
+    	<div class="order" onclick="orderPro()">立即购买</div>
     </div>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/vue.min.js"></script>
 <script type="text/javascript">
-    function updateData() {
+    function orderPro() {
+    	var num=prompt('购买数量', 1)
         api.ajax({
-            url: window.host+'/SearchServlet/findproductBytype',
+            url: window.host+'/OrderServlet/addOrder',
             method: 'post',
             data: {
                 values: { 
-                    type: api.pageParam.query
+                    buyerId: window.openId,
+                    productId:window.app.product.productId,
+                    num:num
                 }
             }
         }, function(ret, err) {
             if (ret && ret.status != 'ERR') {
-                window.app.products=ret.products
+            	alert('OK')
             } else {
                 if (ret) {
                     alert(ret.statusInfo)
@@ -52,9 +74,6 @@
         window.openId=$api.getStorage('user').openId
         window.head=$api.getStorage('user').head
         window.nickname=$api.getStorage('user').nickname
-        api.addEventListener({name:'viewappear'}, function (ret, err) {
-          updateData()
-        })
     }
     apiready = function () {
         api.parseTapmode();
@@ -64,11 +83,9 @@
         window.app=new Vue({
           el:'#content',
           data:{
-            products:[]
+            product:api.pageParam
           }
         })
-        document.getElementsByClassName('aui-title')[0].innerHTML=api.pageParam.query
-        updateData()
     };
 </script>
 

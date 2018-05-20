@@ -32,8 +32,8 @@
         <div class="aui-title"></div>
     </header>
     <div id="prolist-content" class="content">
-      <div v-for="(pro,cindex) in products" class="item">
-        <img :src='pro.images[0]' alt="card" class="item-img">
+      <div v-for="(pro,cindex) in products" class="item" >
+        <img :src='pro.images[0]' alt="card" class="item-img" v-on:click='jump(cindex)'>
         <div class="item-price">¥{{pro.price}}.00</div>
         <div class="item-title">{{pro.name}}</div>
       </div>
@@ -80,7 +80,14 @@
         window.app=new Vue({
           el:'#prolist-content',
           data:{
-            products:[]
+            products:[],
+            jump:function(index) {
+                api.openWin({
+                    name:'detail',
+                    url:'prodetail.html',
+                    pageParam:window.app.products[index]
+                })
+            }
           }
         })
         document.getElementsByClassName('aui-title')[0].innerHTML=api.pageParam.query

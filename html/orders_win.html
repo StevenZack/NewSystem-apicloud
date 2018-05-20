@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+        .goods-title {
+            color: #757575;
+        }
+
+        .goods-price {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">订单</div>
+    </header>
+    <div id="content">
+        <section class="aui-content">
+            <div v-for="(order,cindex) in orders" class="aui-card-list aui-border-t aui-border-b">
+                <div class="aui-card-list-header aui-card-list-user">
+                    <div class="aui-card-list-user-avatar">
+                        <img src="../image/demo1.png">
+                    </div>
+                    <div class="aui-card-list-user-name">
+                        <div class="aui-font-size-16">{{order.productName}}
+                            <i class="aui-iconfont aui-icon-right aui-font-size-12"></i>
+                        </div>
+                        <small></small>
+                    </div>
+                    <div class="aui-card-list-user-info">{{order.createTime}}</div>
+                </div>
+                <div class="aui-card-list-content aui-border-t" >
+                    <ul class="aui-list aui-list-noborder">
+                        <div class="aui-list-item" >
+                            <div class="aui-list-item-inner" style="display: flex;flex-direction: row;align-items: flex-start;">
+                                <div class="goods-title" style="flex-grow: 1;">{{order.productName}}x{{order.num}}</div>
+                                <div class="goods-price" style="width: 50px;">¥{{order.price}}</div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+                <div class="aui-card-list-footer aui-border-t">
+                    <div>{{order.orderStatus}}</div>
+                    <div>
+                        <div v-if="order.orderStatus=='未付款'" class="aui-btn aui-btn aui-btn-outlined aui-btn-primary" v-on:click='payOrder(cindex)'>立即付款</div>
+                        <div v-if="order.orderStatus=='待收货'" v-on:click='confirmReceived(cindex)' class="aui-btn aui-btn aui-btn-outlined aui-btn-danger">确认收货</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript">
+    function updateData() {
+        api.ajax({
+            url: window.host+'/OrderServlet/findorderByopenid',
+            method: 'post',
+            data: {
+                values: window.mValues
+            }
+        }, function(ret, err) {
+            if (ret && ret.status != 'ERR') {
+                window.app.orders=ret.orders
+            } else {
+                if (ret) {
+                    alert(ret.statusInfo)
+                } else {
+                    alert(err.msg)
+                }
+            }
+        });
+    }
+    function initData() {
+        window.host='http://101.200.54.63:8080'
+        window.openId=$api.getStorage('user').openId
+        window.head=$api.getStorage('user').head
+        window.nickname=$api.getStorage('user').nickname
+        window.orderStatus=api.pageParam.orderStatus
+        if (window.orderStatus&&window.orderStatus!='') {
+            window.mValues={openId:window.openId,orderStatus:window.orderStatus}
+        }else{
+            window.mValues={openId:window.openId}
+        }
+        api.addEventListener({name:'viewappear'}, function (ret, err) {
+          updateData()
+        })
+    }
+    apiready = function () {
+        api.parseTapmode();
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        initData()
+        window.app=new Vue({
+            el:'#content',
+            data:{
+                orders:[],
+                payOrder:function(index) {
+                    api.ajax({
+                        url: window.host+'/OrderServlet/payOrder',
+                        method: 'post',
+                        data: {
+                            values:{
+                                orderId:window.app.orders[index].orderId
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret && ret.status != 'ERR') {
+                            updateData()
+                        } else {
+                            if (ret) {
+                                alert(ret.statusInfo)
+                            } else {
+                                alert(err.msg)
+                            }
+                        }
+                    });
+                },
+                confirmReceived:function(index) {
+                    api.ajax({
+                        url: window.host+'/OrderServlet/receivedOrder',
+                        method: 'post',
+                        data: {
+                            values:{
+                                orderId:window.app.orders[index].orderId
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret && ret.status != 'ERR') {
+                            updateData()
+                        } else {
+                            if (ret) {
+                                alert(ret.statusInfo)
+                            } else {
+                                alert(err.msg)
+                            }
+                        }
+                    });
+                }
+            }
+        })
+        updateData()
+    };
+    function closeWin() {
+        api.closeWin({
+        });
+    }
+</script>
+
+</html>

@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+    />
     <title>title</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
-      <link rel="stylesheet" type="text/css" href="../css/common.css" />
-      <link rel="stylesheet" type="text/css" href="../css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/profile.css" />
     <style>
         html,
         body {
@@ -60,6 +61,7 @@
             background-size: 100px 24px;
             background-position: center center;
         }
+
         /*设置登录后的头像样式*/
 
         #user {
@@ -69,6 +71,7 @@
             height: 100%;
             width: 100%;
         }
+
         /*
         #user .qqLogin {
             position: absolute;
@@ -242,23 +245,23 @@
     <div id="wrap">
         <div id="main">
             <div class="profile_box">
-              <div class="login">
-                 <img src="../image/my/my_bg.png" class="loginbg">
-                 <div id="user">
-                     <div class="logins" id="logins">
-                         <div class="login_pic tel open-win" win="login_mobile"></div>
-                         <div class="login_pic wx"  tapmode onclick="fnWXLogin()"></div>
-                         <div class="login_pic qq" tapmode onclick="fnQQLogin()"></div>
-                       <div class="login_pic wb"  tapmode onclick="fnQQLogin()"></div>
-                     </div>
-                     <div class="text open-win" win="login_choose" id="login_choose"></div>
-                 </div>
-                 <!-- <div class="logined"> -->
-                 <img src="" alt="" id="img">
-                 <div class="username" id="username"></div>
-                 <!-- </div> -->
+                <div class="login">
+                    <img src="../image/my/my_bg.png" class="loginbg">
+                    <div id="user">
+                        <div class="logins" id="logins">
+                            <div class="login_pic tel open-win" win="login_mobile"></div>
+                            <div class="login_pic wx" tapmode onclick="fnWXLogin()"></div>
+                            <div class="login_pic qq" tapmode onclick="fnQQLogin()"></div>
+                            <div class="login_pic wb" tapmode onclick="fnQQLogin()"></div>
+                        </div>
+                        <div class="text open-win" win="login_choose" id="login_choose"></div>
+                    </div>
+                    <!-- <div class="logined"> -->
+                    <img src="" alt="" id="img">
+                    <div class="username" id="username"></div>
+                    <!-- </div> -->
 
-             </div>
+                </div>
                 <div class="tabBar">
                     <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenpayWin()">
                         <span class="num_top">0</span>
@@ -268,7 +271,7 @@
                         <span class="num_top"></span>
                         <span class="text"></span>
                     </div>
-                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpencart()">
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenUnpacked()">
                         <span class="num_top">0</span>
                         <span class="text">待发货</span>
                     </div>
@@ -276,7 +279,7 @@
                         <span class="num_top"></span>
                         <span class="text"></span>
                     </div>
-                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpen()">
+                    <div class="tabBar_inner" tapmode="tap-active" onclick="fnOpenUnReceived()">
                         <span class="num_top">0</span>
                         <span class="text">待收货</span>
                     </div>
@@ -290,29 +293,29 @@
                 </div>
             </div>
             <div class="profile_detail_container">
-              <div class="profile_detail_box clearfix">
-                  <div class="profile_detail_inner pull-left">
-                      <div class="profile_detail" tapmode="tap-active" onclick="fnOpenallcartframe()">
-                          <img src="../image/profile_item1.png" alt="">
-                          <span class="title">全部订单</span>
-                          <span class="brief">查看所有</span>
-                      </div>
-                  </div>
-                  <div class="profile_detail_inner pull-left">
-                      <div class="profile_detail" tapmode="tap-active" onclick="fnOpenaddressframe()">
-                          <img src="../image/profile_item3.png" alt="">
-                          <span class="title">收货地址</span>
-                          <span class="brief">地址管理</span>
-                      </div>
-                  </div>
-                  <div class="profile_detail_inner pull-left">
-                      <div class="profile_detail" tapmode="tap-active" onclick="fnQQLogout()">
-                          <img src="../image/profile_item8.png" alt="">
-                          <span class="title">退出账号</span>
-                          <span class="brief">期待下次登录</span>
-                      </div>
-                  </div>
-              </div>
+                <div class="profile_detail_box clearfix">
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnOpenallcartframe()">
+                            <img src="../image/profile_item1.png" alt="">
+                            <span class="title">全部订单</span>
+                            <span class="brief">查看所有</span>
+                        </div>
+                    </div>
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnOpenaddressframe()">
+                            <img src="../image/profile_item3.png" alt="">
+                            <span class="title">收货地址</span>
+                            <span class="brief">地址管理</span>
+                        </div>
+                    </div>
+                    <div class="profile_detail_inner pull-left">
+                        <div class="profile_detail" tapmode="tap-active" onclick="fnQQLogout()">
+                            <img src="../image/profile_item8.png" alt="">
+                            <span class="title">退出账号</span>
+                            <span class="brief">期待下次登录</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -322,105 +325,160 @@
 <script type="text/javascript" src="../script/common.js"></script>
 <script type="text/javascript" src="../script/zepto.js"></script>
 <script type="text/javascript">
-//判断是否登录
-function fnOpenFabuWin(){
-  //判断是否登录：
-  var user = $api.getStorage('user');
-  if(user){
-      api.openWin({
-          name: 'fabu_win',
-          url: 'html/fabu_win.html'
-      });
-  }else{
-      api.confirm({
-          msg: '是否登录？',
-          buttons: ['确定', '取消']
-      }, function(ret, err){
-          if( ret ){
-              if(ret.buttonIndex==1){
-                fnOpenMyFrame();
-                $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
-              }
-          }else{
-               alert( JSON.stringify( err ) );
-          }
-      });
-  }
-}
-//待付款判断是否登陆
-function fnOpenpayWin(){
-  //判断是否登录：
-  var user = $api.getStorage('user');
-  if(user){
-      api.openWin({
-          name: 'cart_win',
-          url: 'html/cart_win.html'
-      });
-  }else{
-      api.confirm({
-          msg: '是否登录？',
-          buttons: ['确定', '取消']
-      }, function(ret, err){
-          if( ret ){
-              if(ret.buttonIndex==1){
-                fnOpenMyFrame();
-                $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
-              }
-          }else{
-               alert( JSON.stringify( err ) );
-          }
-      });
-  }
-}
-function fnQQLogin() {
-      qq.login(function(ret, err) {
-          var openId = ret.openId;
-          if (ret.status) {
-              qq.getUserInfo(function(ret, err) {
-                  if (ret.status) {
-                      //获得昵称和头像地址
-                      nickname = ret.info.nickname;
-                      head = ret.info.figureurl_qq_2;
-                      //显示头像和昵称
-                      $('#img').attr('src', head).css('display', 'block');
-                      $('#username').html(nickname).css('display', 'block');
-                      //隐藏其他登录方式：
-                      $('#user').css('display', 'none');
-                      //存储昵称和头像地址：
-                      $api.setStorage('user', {'nickname':nickname,'head':head,'openId':openId});
+    //判断是否登录
+    function fnOpenFabuWin() {
+        //判断是否登录：
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'fabu_win',
+                url: 'html/fabu_win.html'
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    //待付款判断是否登陆
+    function fnOpenpayWin() {
+        //判断是否登录：
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'orders_win',
+                url: 'orders_win.html',
+                pageParam: {
+                    orderStatus: '未付款'
+                }
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    function fnOpenUnpacked() {
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'orders_win',
+                url: 'orders_win.html',
+                pageParam: {
+                    orderStatus: '待发货'
+                }
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    function fnOpenUnReceived() {
+        var user = $api.getStorage('user');
+        if (user) {
+            api.openWin({
+                name: 'orders_win',
+                url: 'orders_win.html',
+                pageParam: {
+                    orderStatus: '待收货'
+                }
+            });
+        } else {
+            api.confirm({
+                msg: '是否登录？',
+                buttons: ['确定', '取消']
+            }, function (ret, err) {
+                if (ret) {
+                    if (ret.buttonIndex == 1) {
+                        fnOpenMyFrame();
+                        $('#footer li').eq(3).click().addClass('active').siblings().removeClass('active');
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
+    function fnQQLogin() {
+        qq.login(function (ret, err) {
+            var openId = ret.openId;
+            if (ret.status) {
+                qq.getUserInfo(function (ret, err) {
+                    if (ret.status) {
+                        //获得昵称和头像地址
+                        nickname = ret.info.nickname;
+                        head = ret.info.figureurl_qq_2;
+                        //显示头像和昵称
+                        $('#img').attr('src', head).css('display', 'block');
+                        $('#username').html(nickname).css('display', 'block');
+                        //隐藏其他登录方式：
+                        $('#user').css('display', 'none');
+                        //存储昵称和头像地址：
+                        $api.setStorage('user', { 'nickname': nickname, 'head': head, 'openId': openId });
 
-                      //注册：
-                      var host = $api.getStorage('host');
+                        //注册：
+                        var host = $api.getStorage('host');
 
-                      api.ajax({
-                          url: 'http://101.200.54.63:8080/UserServlet/login',
-                          method: 'post',
-                          data: {
+                        api.ajax({
+                            url: 'http://101.200.54.63:8080/UserServlet/login',
+                            method: 'post',
+                            data: {
 
-                              values: {
-                                  openId: openId,
-                                  nickname:nickname,
-                                  head:head
-                              }
-                          }
-                      },function(ret, err){
-                          if (ret) {
-                            alert(ret.status)
-                          } else {
-                              alert( JSON.stringify( err ) );
-                          }
-                      });
-                  } else {
-                      api.alert({
-                          msg: err.msg
-                      });
-                  }
-              });
-          }
-      });
-  }
+                                values: {
+                                    openId: openId,
+                                    nickname: nickname,
+                                    head: head
+                                }
+                            }
+                        }, function (ret, err) {
+                            if (ret) {
+                                alert(ret.status)
+                            } else {
+                                alert(JSON.stringify(err));
+                            }
+                        });
+                    } else {
+                        api.alert({
+                            msg: err.msg
+                        });
+                    }
+                });
+            }
+        });
+    }
     function fnQQLogout() {
-        qq.logout(function(ret, err) {
+        qq.logout(function (ret, err) {
             if (ret.status) {
                 api.toast({
                     msg: '退出成功'
@@ -437,43 +495,43 @@ function fnQQLogin() {
             }
         });
     }
-    apiready = function() {
+    apiready = function () {
         qq = api.require('qq');
         var user = $api.getStorage('user');
-       if(user){
-          $('#img').attr('src', user.head).css('display', 'block');
-          $('#username').html(user.nickname).css('display', 'block');
-          //隐藏其他登录方式：
-          $('#user').css('display', 'none');
+        if (user) {
+            $('#img').attr('src', user.head).css('display', 'block');
+            $('#username').html(user.nickname).css('display', 'block');
+            //隐藏其他登录方式：
+            $('#user').css('display', 'none');
         }
-        Zepto(function($){
-            var em = parseInt(getComputedStyle(document.body,false).fontSize);
-            var emW = em*3/4;
+        Zepto(function ($) {
+            var em = parseInt(getComputedStyle(document.body, false).fontSize);
+            var emW = em * 3 / 4;
             var bodyW = $api.offset(document.body).w;
-            var sp1_3 = (bodyW - 4*emW)/3;
+            var sp1_3 = (bodyW - 4 * emW) / 3;
             $('.profile_detail_inner').width(sp1_3);
         });
     }
-//打开收货地址
-function fnOpenaddressframe(news_id){
-  api.openWin({
-      name: 'address_win',
-      url: 'address_win.html',
-      pageParam: {
-          'news_id': news_id
-      }
-  });
-}
-//打开全部订单
-function fnOpenallcartframe(news_id){
-  api.openWin({
-      name: 'allcart_win',
-      url: 'allcart_win.html',
-      pageParam: {
-          'news_id': news_id
-      }
-  });
-}
+    //打开收货地址
+    function fnOpenaddressframe(news_id) {
+        api.openWin({
+            name: 'address_win',
+            url: 'address_win.html',
+            pageParam: {
+                'news_id': news_id
+            }
+        });
+    }
+    //打开全部订单
+    function fnOpenallcartframe(news_id) {
+        api.openWin({
+            name: 'orders_win',
+            url: 'orders_win.html',
+            pageParam: {
+                'news_id': news_id
+            }
+        });
+    }
 
 </script>
 
