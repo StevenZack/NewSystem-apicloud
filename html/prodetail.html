@@ -46,6 +46,10 @@
 <script type="text/javascript" src="../script/vue.min.js"></script>
 <script type="text/javascript">
     function orderPro() {
+        if (!window.openId) {
+            alert('请先登录')
+            return
+        }
     	var num=prompt('购买数量', 1)
         api.ajax({
             url: window.host+'/OrderServlet/addOrder',
@@ -71,6 +75,9 @@
     }
     function initData() {
         window.host='http://101.200.54.63:8080'
+        if (!$api.getStorage('user')) {
+            return
+        }
         window.openId=$api.getStorage('user').openId
         window.head=$api.getStorage('user').head
         window.nickname=$api.getStorage('user').nickname

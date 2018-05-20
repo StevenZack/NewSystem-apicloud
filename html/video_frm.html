@@ -11,100 +11,63 @@
 </head>
 
 <body id='body'>
-
-</body>
-<script type="text/html" id="template">
-    <section class="aui-content">
-        <% for(i in ret){%>
-            <div class="aui-card-list aui-border-t aui-border-b" tapmode onclick="fnPlayVideo(<%=ret[i].video_id%>)">
+    <div id="content">
+        <section class="aui-content" v-for='(v,cindex) in videos'>
+            <div class="aui-card-list aui-border-t aui-border-b" tapmode v-on:click='fnPlayVideo(cindex)'>
                 <div class="aui-card-list-content">
-                    <img src="<%=host%><%=ret[i].imagePath%>" />
+                    <img :src='v.image'>
                 </div>
                 <div class="aui-card-list-header aui-padded-t-5 aui-padded-b-5">
-                    <%=ret[i].title%>
+                    {{v.title}}
                 </div>
             </div>
-            <%}%>
-    </section>
-</script>
+        </section>
+    </div>
+</body>
 <script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/template-native.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
 <script type="text/javascript">
     function initData() {
         window.host = 'http://101.200.54.63:8080'
         window.openId = $api.getStorage('user').openId
         window.head = $api.getStorage('user').head
         window.nickname = $api.getStorage('user').nickname
-        api.addEventListener({ name: 'viewappear' }, function (ret, err) {
-            updateData()
-        })
-    }
-    var video_ids = [];
-    var titles = [];
-    var videos = [];
-
-    var index;
-    function fnPlayVideo(video_id) {
-        for (i in video_ids) {
-            if (video_id == video_ids[i]) {
-                index = i;
-            }
-        }
-
-        //调用视频模块播放视频：
-        videoPlayer.play({
-            texts: {
-                head: {
-                    title: titles[index]
-                }
-            },
-            path: host + videos[index], //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
-            //在 android 平台上不支持 widget://
-            autoPlay: true //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
-        }, function (ret, err) {
-            if (ret) {
-                alert(JSON.stringify(ret));
-            } else {
-                alert(JSON.stringify(err));
-            }
-        });
-
     }
     apiready = function () {
-        videoPlayer = api.require('videoPlayer');
-        var host = window.host
-
-        //请求数据：
-        api.ajax({
-            url: host + '/VideoServlet/findAll',
-            method: 'get'
-        }, function (ret, err) {
-            if (ret) {
-                var data = {
-                    'ret': ret,
-                    'host': host
-                };
-                html = template('template', data);
-                $api.dom('body').innerHTML = html;
-
-                //遍历数据:
-                for (i in ret) {
-                    video_ids.push(ret[i].video_id);
-                    titles.push(ret[i].title);
-                    videos.push(ret[i].path);
+        window.videoPlayer = api.require('videoPlayer');
+        window.app=new Vue({
+            el:'#content',
+            data:{
+                videos:[
+                    {
+                        title:'黄河与长城的第一次握手，就在山西这个消逝的村落！',
+                        image:'https://wx4.sinaimg.cn/crop.0.121.2000.1125.360/006RmV8Gly1fnir3q6ytfj31jk0zju0x.jpg',
+                        videolink:'https://fus.cdn.krcom.cn/003E81EDlx07jo3MOBSo0104020878r50k060.mp4?label=mp4_1080p&template=1920x1080.27&Expires=1526824210&ssig=m6kzEPc%2F03&KID=unistore,video'
+                    },
+                    {
+                        title:'饭局第一法则',
+                        image:'https://wx4.sinaimg.cn/crop.0.63.1200.675.360/0070DtfPly1fr747pkhqjj30xc0m8ka1.jpg',
+                        videolink:'https://fus.cdn.krcom.cn/0001alZ7lx07knbDVIkg01040202USVg0k030.mp4?label=mp4_1080p&template=1920x1080.27&Expires=1526824411&ssig=lPisZxT7Kj&KID=unistore,video'
+                    }
+                ],
+                fnPlayVideo:function(index) {
+                    window.videoPlayer.play({
+                        texts: {
+                            head: {
+                                title: window.app.videos[index].title
+                            }
+                        },
+                        path: window.app.videos[index].videolink, 
+                        autoPlay: true 
+                    }, function (ret, err) {
+                        if (ret) {
+                        } else {
+                            alert(JSON.stringify(err));
+                        }
+                    });
                 }
-
-            } else {
-                alert(JSON.stringify(err));
             }
-        });
-
-
-
-
-
-
-
+        })
     }
 </script>
 
