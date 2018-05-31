@@ -99,15 +99,16 @@
         }else{
             window.mValues={openId:window.openId}
         }
-        api.addEventListener({name:'viewappear'}, function (ret, err) {
-          updateData()
-        })
     }
     apiready = function () {
         api.parseTapmode();
         var header = $api.byId('aui-header');
         $api.fixStatusBar(header);
         initData()
+        api.addEventListener({name:'viewappear'}, function (ret, err) {
+          initData()
+          updateData()
+        })
         window.app=new Vue({
             el:'#content',
             data:{
