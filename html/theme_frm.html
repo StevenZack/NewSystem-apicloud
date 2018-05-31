@@ -60,7 +60,9 @@
             }
         }, function(ret, err) {
             if (ret && ret.status != 'ERR') {
-                window.app.moments=ret.moments.reverse()
+                if (ret.moments) {
+                    window.app.moments=ret.moments.reverse()
+                }
             } else {
                 if (ret) {
                     alert(ret.statusInfo)

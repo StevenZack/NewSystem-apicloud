@@ -44,11 +44,12 @@
 <script type="text/javascript">
     function updateData() {
         api.ajax({
-            url: window.host+'/SearchServlet/findproductBytype',
+            url: window.host+'/SearchServlet/findproductByname',
             method: 'post',
             data: {
                 values: { 
-                    type: api.pageParam.query
+                    type: api.pageParam.query,
+                    query: api.pageParam.query
                 }
             }
         }, function(ret, err) {

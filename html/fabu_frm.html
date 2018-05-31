@@ -75,7 +75,7 @@
 <body>
     <p class="aui-text-center aui-margin-t-15">内容发布</p>
     <section class="aui-content-padded">
-        <textarea placeholder="在这里输入内容..."></textarea>
+        <textarea id="mytextarea" placeholder="在这里输入内容..."></textarea>
     </section>
     <p class="aui-text-center aui-margin-t-15">美图更精彩</p>
     <section class="aui-content-padded">
@@ -100,7 +100,7 @@
 <script>
 
     function fnCommit() {
-        var text = $('textarea').val();
+        var text = document.getElementById('mytextarea').value;
         var images = [];
         $('img').each(function () {
             images.push($(this).attr('src'));
