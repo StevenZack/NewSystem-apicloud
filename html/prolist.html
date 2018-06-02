@@ -43,12 +43,16 @@
 <script type="text/javascript" src="../script/vue.min.js"></script>
 <script type="text/javascript">
     function updateData() {
+        var murl='findproductBytype'
+        if (api.pageParam.query&&api.pageParam.query!='') {
+            murl='findproductByname'
+        }
         api.ajax({
-            url: window.host+'/SearchServlet/findproductByname',
+            url: window.host+'/SearchServlet/'+murl,
             method: 'post',
             data: {
                 values: { 
-                    type: api.pageParam.query,
+                    type: api.pageParam.typ,
                     query: api.pageParam.query
                 }
             }
@@ -88,7 +92,7 @@
             }
           }
         })
-        document.getElementsByClassName('aui-title')[0].innerHTML=api.pageParam.query
+        document.getElementsByClassName('aui-title')[0].innerHTML=api.pageParam.query?api.pageParam.query:api.pageParam.typ
         updateData()
     };
 </script>
